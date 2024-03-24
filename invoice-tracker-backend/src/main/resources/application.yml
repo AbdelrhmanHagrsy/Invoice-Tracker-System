@@ -1,0 +1,57 @@
+spring:
+  jpa:
+    database: mysql
+    open-in-view: false
+    hibernate.ddl-auto: create-drop
+    generate-ddl: true
+    show-sql: false
+
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/employeedb
+    username: root
+    password: ZakariiA4758!
+
+
+  mail:
+    host: ${MAIL_HOST}
+    port: ${MAIL_PORT}
+    protocol: smtp
+    username: ${MAIL_EMAIL}
+    password: ${MAIL_PASSWORD}
+    properties.mail.smtp.auth: true
+    properties.mail.smtp.starttls.enable: true
+  mvc:
+    pathmatch:
+      matching-strategy: ANT_PATH_MATCHER
+
+    application:
+      name: invoice-tracker-backend
+    lifecycle:
+      timeout-per-shutdown-phase: 30s
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 20MB
+      max-request-size: 20MB
+
+server:
+  port: ${PORT:8080}
+  shutdown: graceful
+
+logging:
+  level[net.talaatharb.invoicetracker]: DEBUG
+  level[org.springframework.web]: DEBUG
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+      probes:
+        enabled: true
+
+ATTACHMENTS_LOCATION: attachments
